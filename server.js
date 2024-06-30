@@ -1,9 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import path from 'path';
-import { fileURLToPath } from 'url';
-
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -24,12 +21,7 @@ mongoose.connect(process.env.MONGODB_URI)
     console.log(error);
 });
 
-app.get("/", (req, res) => {
-  const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
-const __dirname = path.dirname(__filename); // get the name of the directory
-  app.use(express.static(path.resolve(__dirname, "frontend", "build")));
-  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-  });
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
